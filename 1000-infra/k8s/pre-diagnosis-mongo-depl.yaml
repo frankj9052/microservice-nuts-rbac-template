@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pre-diagnosis-mongo-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pre-diagnosis-mongo
+  template:
+    metadata:
+      labels:
+        app: pre-diagnosis-mongo
+    spec:
+      containers:
+        - name: pre-diagnosis-mongo
+          image: mongo
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pre-diagnosis-mongo-srv
+spec:
+  selector:
+    app: pre-diagnosis-mongo
+  ports:
+    - name: pre-diagnosis-mongo-port
+      protocol: TCP
+      port: 27017
+      targetPort: 27017
+
+  

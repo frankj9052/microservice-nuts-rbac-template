@@ -1,0 +1,40 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-srv
+  annotations:
+    nginx.ingress.kubernetes.io/use-regex: 'true'
+spec:
+  ingressClassName: nginx  
+  rules:
+    - host: noqclinic.dev
+      http:
+        paths:
+          - path: /api/users/?(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: auth-srv
+                port:
+                  number: 3000
+          - path: /api/chat/?(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: chat-srv
+                port:
+                  number: 3000
+          - path: /api/booking/?(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: booking-srv
+                port:
+                  number: 3000
+          - path: /api/pre-diagnosis/?(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: pre-diagnosis-srv
+                port:
+                  number: 3000

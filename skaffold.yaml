@@ -1,0 +1,50 @@
+apiVersion: skaffold/v4beta9
+kind: Config
+manifests:
+  rawYaml:
+    - "./1000-infra/k8s/*"
+    - "./1000-infra/k8s-dev/*"
+build:
+  local:
+    push: false
+  artifacts:
+    - image: frankjia/noqclinic-auth
+      context: 3000-auth
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "src/**/*.ts"
+            dest: .
+    - image: frankjia/noqclinic-chat
+      context: 4000-chat
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "src/**/*.ts"
+            dest: .
+    - image: frankjia/noqclinic-booking
+      context: 5000-booking
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "src/**/*.ts"
+            dest: .        
+    - image: frankjia/noqclinic-pre-diagnosis
+      context: 6000-pre-diagnosis
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "src/**/*.ts"
+            dest: .  
+    - image: frankjia/noqclinic-ai
+      context: 7000-ai
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "src/**/*.ts"
+            dest: .  

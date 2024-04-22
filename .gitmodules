@@ -1,0 +1,3 @@
+[submodule "2000-common"]
+	path = 2000-common
+	url = https://github.com/FrankJia052/noqclinic-common.git

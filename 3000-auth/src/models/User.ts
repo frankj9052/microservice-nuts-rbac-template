@@ -1,10 +1,12 @@
 import mongoose from "mongoose";
 import { Password } from "../services/password";
+import { ROLE } from "@noqclinic/common";
 
 // An interface that describes the properties that are required to create a new User
 interface UserAttrs {
     email: string,
-    password: string
+    password: string,
+    role?: string,
 }
 
 // An interface that describes the properties that a User Model has
@@ -16,6 +18,7 @@ interface UserModel extends mongoose.Model<UserDoc> {
 interface UserDoc extends mongoose.Document {
     email: string,
     password: string,
+    role: string
     // createdAt: Date,
     // updatedAt: Date
 }
@@ -29,6 +32,12 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         require: true
+    },
+    role: {
+        type: String,
+        require: true,
+        enum: ROLE,
+        default: ROLE.client
     }
 }, {
     toJSON: {

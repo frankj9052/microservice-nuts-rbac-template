@@ -4,7 +4,7 @@ import request from "supertest"
 import { app } from "../app";
 
 declare global {
-    var signin: () => Promise<string[] | undefined>;
+    var signin: () => Promise<string[]>;
 }
 
 let mongo: any;
@@ -44,5 +44,5 @@ global.signin = async () => {
     
     const cookie = response.get("Set-Cookie");
 
-    return cookie
+    return cookie as string[]
 }

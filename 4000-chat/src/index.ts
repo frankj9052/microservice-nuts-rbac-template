@@ -3,6 +3,7 @@ import mongoose from "mongoose"
 import { natsWrapper } from "./nats-wrapper"
 import { ExampleCreatedListener } from "./events/listeners/example-created-listener"
 import { ExampleUpdatedListener } from "./events/listeners/example-updated-listener "
+import redisClient from "./redis-client"
 
 const start = async () => {
     console.log("server is starting ... ")
@@ -22,6 +23,9 @@ const start = async () => {
     if(!process.env.NATS_URL) {
         throw new Error("NATS_URL must be defined")
     }
+    if(!process.env.REDIS_HOST) {
+        throw new Error("REDIS_HOST must be defined")
+    }
     try {
         await natsWrapper.connect(
             process.env.NATS_CLUSTER_ID,
@@ -40,7 +44,10 @@ const start = async () => {
         new ExampleUpdatedListener(natsWrapper.client).listen()
         
         await mongoose.connect(process.env.MONGO_URI)
-        console.log("Connected to Tickets MongoDb")
+        console.log("Connected to Chat MongoDb")
+
+        await redisClient.connect().catch(console.error)
+        console.log("Connected to Chat Redis")
     } catch(err) {
         console.log(err)
     }

@@ -24,6 +24,8 @@ spec:
               value: "http://nats-srv:4222"
             - name: NATS_CLUSTER_ID
               value: noqclinic
+            - name: REDIS_HOST
+              value: redis://chat-redis-srv:6379
             - name: MONGO_URI
               value: "mongodb://chat-mongo-srv:27017/chat"
             - name: JWT_KEY

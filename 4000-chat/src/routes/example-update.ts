@@ -1,4 +1,4 @@
-import { NotAuthorizedError, NotFoundError, requireAuth, validateRequest } from "@noqclinic/common";
+import { ACTIONS, NotAuthorizedError, NotFoundError, RESOURCES, requireAuth, validateRequest } from "@noqclinic/common";
 import express, { Request, Response } from "express";
 import { body } from "express-validator";
 import { natsWrapper } from "../nats-wrapper";
@@ -8,7 +8,7 @@ import { ExampleUpdatedPublisher } from "../events/publishers/example-updated-pu
 const router = express.Router()
 
 router.put("/api/chat/example-update/:id", 
-    requireAuth
+    requireAuth(RESOURCES.chat, ACTIONS.update)
 , [
     body('text')
         .not()

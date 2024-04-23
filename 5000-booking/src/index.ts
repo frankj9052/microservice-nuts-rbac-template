@@ -36,7 +36,7 @@ const start = async () => {
         // put NATS Listener here
         
         await mongoose.connect(process.env.MONGO_URI)
-        console.log("Connected to Tickets MongoDb")
+        console.log("Connected to Booking MongoDb")
     } catch(err) {
         console.log(err)
     }

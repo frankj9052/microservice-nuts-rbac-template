@@ -110,6 +110,8 @@ $ kubectl create secret generic jwt-secret --from-literal=JWT_KEY=asdf
 
 # 3 - Run Backend
 
+It's better to run `npm i` for your server to avoid the type error or no module error.
+
 In root repository of the project, run command in terminal:
 
 ~~~bash

@@ -40,7 +40,7 @@ const start = async () => {
         new ExampleUpdatedListener(natsWrapper.client).listen()
         
         await mongoose.connect(process.env.MONGO_URI)
-        console.log("Connected to Tickets MongoDb")
+        console.log("Connected to AI MongoDb")
     } catch(err) {
         console.log(err)
     }

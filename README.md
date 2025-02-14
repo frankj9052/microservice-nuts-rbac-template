@@ -1,6 +1,6 @@
 # 1 - Introduction
 
-This project is a dedicated digital healthcare platform backend, offering a range of essential services. It includes features like user profile management, direct communication with medical professionals, AI-powered preliminary diagnosis, convenient appointment scheduling with doctors, and efficient electronic health record management.
+This project is a dedicated digital healthcare platform backend, offering a range of essential services.
 
 The main technology stack includes:
 
@@ -91,7 +91,7 @@ Add a text in the hosts file
 
 ~~~markdown
 # change ip to your own ip
-192.168.1.228 noqclinic.dev
+192.168.1.228 my-app.dev
 ~~~
 
 
